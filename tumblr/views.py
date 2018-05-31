@@ -8,7 +8,7 @@ from tumblr.models import TumblrToken
 
 
 def auth(request):
-    t = Tumblpy(app_key=settings.TUMBLR_COMSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY)
+    t = Tumblpy(app_key=settings.TUMBLR_CONSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY)
     auth_props = t.get_authentication_tokens(callback_url='http://tumblrdeneme.pythonanywhere.com/callback/')
     auth_url = auth_props['auth_url']
 
@@ -22,15 +22,15 @@ def auth(request):
 
 
 def callback(request):
-    t = Tumblpy(app_key=settings.TUMBLR_COMSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY,
+    t = Tumblpy(app_key=settings.TUMBLR_CONSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY,
                 oauth_token=request.session["oauth_token"],
                 oauth_token_secret=request.session["oauth_token_secret"])
 
     oauth_verifier = request.GET.get('oauth_verifier')
-    authorized_tokens = t.get_access_token(oauth_verifier)
+    authorized_tokens = t.get_authorized_tokens(oauth_verifier)
 
     # save token locally.
-    token, created = TumblrToken.objects.get_or_create(user=request.user, apikey=settings.TUMBLR_COMSUMER_KEY)
+    token, created = TumblrToken.objects.get_or_create(user=request.user, apikey=settings.TUMBLR_CONSUMER_KEY)
     token.access_token = authorized_tokens['oauth_token']
     token.access_token_secret = authorized_tokens['oauth_token_secret']
     token.save()
@@ -41,7 +41,7 @@ def post(request):
     user = request.user
     # check access token. If no access token, redirect to Oauth page.
     try:
-        token = TumblrToken.objects.get(user=user, apikey=settings.TUMBLR_CUSTOMER_KEY)
+        token = TumblrToken.objects.get(user=user, apikey=settings.TUMBLR_CONSUMER_KEY)
     except TumblrToken.DoesNotExist:
         return HttpResponseRedirect(reverse("tumblr_auth"))
 

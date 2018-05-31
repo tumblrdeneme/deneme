@@ -121,5 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-TUMBLR_COMSUMER_KEY = 'G9bM6rDRGBJEuY0q9UakpKFkatlF3rglJnDOHlW2eZBlDSdE1N'
+TUMBLR_CONSUMER_KEY = 'G9bM6rDRGBJEuY0q9UakpKFkatlF3rglJnDOHlW2eZBlDSdE1N'
 TUMBLR_SECRET_KEY = 'O9u97nG4028htHT0WWvHKojmZOhQB5hiFnssRBGa8Yg5VellgV'
