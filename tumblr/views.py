@@ -8,9 +8,8 @@ from tumblr.models import TumblrToken
 
 
 def auth(request):
-    t = Tumblpy(app_key=settings.TUMBLR_COMSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY,
-                callback_url='http://tumblrdeneme.pythonanywhere.com/callback' % request.get_host())
-    auth_props = t.get_authentication_tokens()
+    t = Tumblpy(app_key=settings.TUMBLR_COMSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY)
+    auth_props = t.get_authentication_tokens(callback_url='http://tumblrdeneme.pythonanywhere.com/callback')
     auth_url = auth_props['auth_url']
 
     oauth_token = auth_props['oauth_token']
