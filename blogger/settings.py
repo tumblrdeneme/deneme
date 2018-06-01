@@ -25,7 +25,7 @@ SECRET_KEY = 'cd_@lm*4$hll&mg#8#&81s+o0c(!xrb39ji5#&(ka5kd)f3=4t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["http://tumblrdeneme.pythonanywhere.com"]
 
 
 # Application definition
