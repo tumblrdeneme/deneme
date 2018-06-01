@@ -9,7 +9,7 @@ from tumblr.models import TumblrToken
 
 def auth(request):
     t = Tumblpy(app_key=settings.TUMBLR_CONSUMER_KEY, app_secret=settings.TUMBLR_SECRET_KEY)
-    auth_props = t.get_authentication_tokens(callback_url=callback(request))
+    auth_props = t.get_authentication_tokens(callback_url=callback())
     auth_url = auth_props['auth_url']
 
     oauth_token = auth_props['oauth_token']
